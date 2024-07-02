@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Extension</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            width: 200px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" id="textarea"></input>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            let id = urlParams.get('id');
+            id = decodeURIComponent(id); 
+            const textarea = document.getElementById('textarea');
+            
+            if (id) {
+                if (id.includes('displaystyle')) {
+                    id = id.replace('{\\displaystyle ', '');
+                    id = id.slice(0, -1);
+                }
+                textarea.value = id;
+                navigator.clipboard.writeText(textarea.value).then(() => {
+                setInterval(() => {
+                    window.close()
+                }, 10);
+            })
+            } else {
+                textarea.value = 'No ID parameter found';
+            }
+        });
+    </script>
+</body>
+</html>
