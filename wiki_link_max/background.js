@@ -13,7 +13,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
         if (title.includes("{\\displaystyle")) {
             chrome.tabs.remove(tabId);
             console.log(title);
-            let url = 'http://pupinos.pupin.fr/wiki_link_max/popup.html?id=' + encodeURIComponent(title);
+            let url = 'https://pupinos.pupin.fr/wiki_link_max/popup.html?id=' + encodeURIComponent(title);
             chrome.tabs.create({ url: url});
         }
     }
